@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>당신의 기억, Memorial</title>
+    <link rel="shortcut icon" type="image/x-icon" href="pgimg/m_logo.ico">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/slide.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <!-- <script>
+        // HTML file include
+        $(document).ready(function () {
+            $("div[data-includeHTML]").each(function () {
+                $(this).load($(this).attr("data-includeHTML"));
+            });
+        });
+    </script> -->
+</head>
+<body>
+    <article class="sub_menubar">
+        <div id="sub_header">
+            <div class="sub_header_menu">
+                <a href="#"><h3>로그인</h3></a>
+            </div>
+            <div class="sub_header_menu">
+                <a href="#"><h3>회원가입</h3></a>
+            </div>
+        </div>
+        <div id="sub_main">
+            <ul>
+                <li><a href="#"><h2>Memories</h2></a></li>
+                <li><a href="#"><h2>Save</h2></a></li>
+                <li><a href="#"><h2>Tech</h2></a></li>
+                <li><a href="#"><h2>About Us</h2></a></li>
+            </ul>
+        </div>
+    </article>
+    <div class="index_nav">
+        <header>
+            <!-- <div data-includeHTML="header.html"></div> -->
+        	<th:block th:replace="~{header :: headerFragment('Header')}"></th:block>
+        </header>
+        <main>
+            <section id="main_nav">
+                <div class="slidewrapper"> <!-- 슬라이드 시작 -->
+                    <div class="pager">
+                        <a href="#slide1" class="active"></a>
+                        <a href="#slide2"></a>
+                        <a href="#slide3"></a>
+                    </div>
+                    <ul class="slide_container">
+                        <li class="slide" id="slide1">
+                            <a th:href="@{/stop_motion}"><h2>사진을 스톱모션으로 볼 수 있다고!?</h2></a>
+                        </li>
+                        <li class="slide" id="slide2">
+                            <a href="thumbnail.html"><h2>사진을 큰 화면으로 보자!</h2></a>
+                        </li>
+                        <li class="s  lide" id="slide3">
+                            <a href="photo_management.html"><h2>나만의 추억 관리</h2></a>
+                        </li>
+                    </ul>
+                </div> <!-- 슬라이드 끝 -->
+                <div class="main_btns">
+                    <div class="Guidance_phrase"><h1>당신의 기억을 공유하세요.</h1></div>
+                    <div class="btns" id="motion_blur"><a th:href="@{/stop_motion}"><h2>스톱모션</h2></a></div>
+                    <div class="btns" id="thumbnail"><a href="thumbnail.html"><h2>썸네일</h2></a></div>
+                    <div class="btns" id="photo_management"><a href="photo_management.html"><h2>사진 관리</h2></a></div>
+                </div>
+                <div class="clear"></div>
+                <!-- <div data-includeHTML="login.html"></div> -->
+                <th:block th:replace="~{login :: loginFragment}"></th:block>
+            </section> 
+        </main>
+        <footer>
+            <!-- <div data-includeHTML="footer.html"></div> -->
+        	<th:block th:replace="~{footer :: footerFragment}"></th:block>
+        </footer>
+    </div>
+</body>
+</html>
+<script src="js/slide.js"></script>
+<script>
+    // 햄버거 메뉴바 디자인 작업 시작
+    var index = null;
+    $('.sub_header_menu').mouseenter(function(){
+        index = $(this).index();
+        $('.sub_header_menu:eq('+index+')').css({background: 'white'});
+        $('.sub_header_menu:eq('+index+') a h3').css({color: 'black'});
+    });
+    $('.sub_header_menu').mouseleave(function(){
+        index = $(this).index();
+        $('.sub_header_menu:eq('+index+')').css({background: 'black'});
+        $('.sub_header_menu:eq('+index+') a h3').css({color: 'white'});
+    });
+    // 햄버거 메뉴바 디자인 작업 끝
+</script>

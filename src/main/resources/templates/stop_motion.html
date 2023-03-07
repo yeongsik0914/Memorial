@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/stop_header.css">
+    <link rel="stylesheet" type="text/css" href="css/stop_motion.css">
+    <link rel="shortcut icon" type="image/x-icon" href="pgimg/m_logo.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="color-thief-master/dist/color-thief.umd.js"></script>
+    <!-- <script>
+        // HTML file include
+        $(document).ready(function () {
+            $("div[data-includeHTML]").each(function () {
+                $(this).load($(this).attr("data-includeHTML"));
+            });
+        });
+    </script> -->
+    <title>스톱모션 페이지</title>
+</head>
+<body>
+    <header>
+        <!-- <div data-includeHTML="stop_header.html"></div> -->
+        <th:block th:replace="stop_header :: stop_headerFragment"></th:block>
+        
+    </header>
+    <main>
+        <section class="main_nav">
+            <!-- <div class="btns">
+                <button class="button" type="button"><h1>+</h2></button>
+                <h3>controller</h3>
+                <button class="button" type="button"><h1>-</h1></button>
+            </div> -->
+            <div class="images">
+                <div class="images_tle">
+                    <img id="sample_img" src="pgimg/a0.jpg">
+                    <div class="marble">
+                        <img id="marble_ball_1" src="pgimg/a0.jpg">
+                        <img id="marble_ball_2" src="pgimg/a1.jpg">
+                        <img id="marble_ball_3" src="pgimg/a2.jpg">
+                        <img id="marble_ball_4" src="pgimg/a3.jpg">
+                        <img id="marble_ball_5" src="pgimg/a4.jpg">
+                        <img id="marble_ball_6" src="pgimg/a5.jpg">
+                        <img id="marble_ball_7" src="pgimg/a6.jpg">
+                        <img id="marble_ball_8" src="pgimg/a7.jpg">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+<script>
+    //3.75초 마다 스톱모션 이미지 변경 처리
+    let timer = undefined,
+        currnetIdx = 7;
+        show_img = $('#sample_img'),
+        ball_img = $('.marble').find('img');
+
+    function stopMotion(){
+        const colorThief = new ColorThief();
+        var colors = colorThief.getPalette($('#sample_img')[0],8);
+
+        $('body').css({
+            background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'), rgb('+ colors[3]+'), rgb('+ colors[4]+'), rgb('+ colors[5]+'), rgb('+ colors[6]+'), rgb('+ colors[7]+'))'
+        });
+        $('.button').css({
+            background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'))'
+        });
+        timer = setInterval(()=>{
+            if(currnetIdx < 0){
+                 currnetIdx = 7;
+            }
+            show_img.attr({src: 'pgimg/a'+currnetIdx+'.jpg'});
+            currnetIdx = currnetIdx -1;
+            colors = colorThief.getPalette($('#sample_img')[0],8);
+
+            //색상 추출 후 배경에 그라데이션 처리
+            $('body').css({
+                background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'), rgb('+ colors[3]+'), rgb('+ colors[4]+'), rgb('+ colors[5]+'), rgb('+ colors[6]+'), rgb('+ colors[7]+'))'
+            });
+            $('.button').css({
+                background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'))'
+            });
+            timer = undefined;
+        }, 3750);
+    }
+    if(timer == undefined){
+        stopMotion();
+    }
+</script>
+</html>
