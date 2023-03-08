@@ -222,13 +222,13 @@
             <div id="form-container">
                 <div id="form-inner-container">
                   <!-- Sign up form -->
-                  <a onclick="login_out()"><img class="close_btn" src="img/X-icon.png"></a>
+                  <a href="javascript:void(0);" onclick="login_out()"><img class="close_btn" src="img/X-icon.png"></a>
                   <div id="sign-up-container">
                     <h3 style="margin-bottom: 15px;">회원가입</h3>
-                    <form th:action="@{/user/signup}" method="post">
+                    <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
                       
-                      <!-- <div th:replace="~{form_errors :: formErrorsFragment}"></div> -->
-                      
+                      <!-- <div th:replace="~{form_errors :: formErrorsFragment}"></div> --> 
+                     
                       <label for="username">이름</label>
                       <input type="text" name="username" id="username" placeholder="이름">
           
