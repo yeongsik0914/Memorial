@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -73,7 +73,6 @@
                     <div class="btns" id="photo_management"><a href="photo_management.html"><h2>사진 관리</h2></a></div>
                 </div>
                 <div class="clear"></div>
-                <!-- <div data-includeHTML="login.html"></div> -->
                 <th:block th:replace="~{login :: loginFragment}"></th:block>
             </section> 
         </main>
