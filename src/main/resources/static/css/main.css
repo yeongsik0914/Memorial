@@ -80,7 +80,7 @@ main div.main_btns .btns a:hover {
 }
 
 #sub_header .sub_header_menu {
-    width: 120px;
+    width: 190px;
     height: 48px;
     float: left;
     border: 3px solid white;
@@ -88,9 +88,9 @@ main div.main_btns .btns a:hover {
     /* margin-left: auto;
     margin-right: auto; */
     text-align: center;
-    margin: 10px 0 0 35px;
+    margin: 10px 0 0 80px;
 }
-#sub_header .sub_header_menu a h3 {
+#sub_header .sub_header_menu a h3 {	
    margin-top: 10px;
    color: white;
 }

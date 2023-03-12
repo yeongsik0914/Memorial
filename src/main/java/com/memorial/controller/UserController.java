@@ -20,13 +20,15 @@ public class UserController {
 	private final UserService userService;
 	
 	@GetMapping("/signup")
-	public String signup(UserCreateForm userCreateForm) {
+	public String signup(UserCreateForm userCreateForm) { 
+	
 		return "login";
 	}
 	
 	@PostMapping("/signup")
 	public String signup(@Valid UserCreateForm userCreateForm, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
+			
 			return "login";
 		}
 		

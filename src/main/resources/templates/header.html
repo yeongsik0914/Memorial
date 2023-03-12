@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
-<th:block th:fragment="headerFragment(param1)">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header</title>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-</head>
-<body>
+<header th:fragment="headerFragment">
   <nav id="nav_bar">
       <div>
         <a class="menu-trigger" href="#">
@@ -34,13 +26,13 @@
   <nav id="sub_nav">
     <div class="sub_sort">
       <ul class="submenu" id="submenu1">
-        <li><a href="stop_motion.html">스톱모션</a></li>
-        <li><a href="thumbnail.html">썸네일</a></li>
+        <li><a href="stop_motion">스톱모션</a></li>
+        <li><a href="thumbnail">썸네일</a></li>
         <li><a href="#">sub3</a></li>
         <li><a href="#">sub4</a></li>
       </ul>
       <ul class="submenu" id="submenu2">
-        <li><a href="photo_management.html">사진관리</a></li>
+        <li><a href="photo_management">사진관리</a></li>
         <li><a href="#">sub2</a></li>
         <li><a href="#">sub3</a></li>
         <li><a href="#">sub4</a></li>
@@ -59,113 +51,5 @@
       </ul>
     </div>
   </nav>
-</body>
-<script>
-  // 햄버거 토글 버튼
-  var burger = $('.menu-trigger');
-  var burger_toggle = 0;
-  var window_idx = undefined;
-  var window_toggle = undefined;
-  burger.each(function(index){
-      var $this = $(this);
-      window_idx = index;
-      $this.on('click', function(e){
-          e.preventDefault();
-          window_toggle = 0;
-          $(this).toggleClass('active-' + (index+1));  
-      })
-  });
-
-  burger.on('click', function(){
-    if(burger_toggle == 0){
-      $('.sub_menubar').animate({left:'0px'});
-      $('header').css({position:'fixed'}).animate({left:'350px'});
-      $('.index_nav').css({position:'relative'}).animate({left:'350px'});
-      $('body').css({overflow: 'hidden'});
-      
-      burger_toggle = 1;
-    } else {
-      $('.sub_menubar').animate({left:'-350px'});
-      $('header').css({position:'fixed'}).animate({left:'0px'});
-      $('.index_nav').css({position:'relative'}).animate({left:'0px'});
-      $('body').css({overflow: 'visible'});
-      burger_toggle = 0;
-    }
-  });
-
-  // 햄버거 토글 버튼 끝
-  $(document).ready(function(){
-    var index = null;
-    // 메뉴바 마우스 이벤트
-    $('#nav_bar #menu').mouseover(function(){
-      $('#sub_nav').css('display','block');
-    });
-
-    $('#sub_nav').mouseleave(function(){
-      $('#sub_nav').css('display','none');
-      $('#menu li a').css('color','gray');
-      $('.submenu li a').css('color','gray');
-    });
-
-    $('#sub_nav').mouseover(function(){
-      $('#sub_nav').css('display','block');
-    });
-
-    $('#nav_bar #menu').mouseleave(function(){
-      $('#sub_nav').css('display','none');
-      $('#menu li a').css('color','gray');
-      $('.submenu li a').css('color','gray');
-    });
-
-    $('#menu li').mouseover(function(){
-      index = $(this).index();
-      $('#menu li:eq('+index+') a').css('color','white');
-      $('.submenu:eq('+index+') li a').css('color','white');
-    });
-
-    $('#menu li').mouseleave(function(){
-      $('#menu li:eq('+index+') a').css('color','gray');
-      $('.submenu:eq('+index+') li a').css('color','gray');
-    });
-
-    $('.submenu').mouseover(function(){
-      index = $(this).index();
-      $('.submenu li a').mouseover(function(){
-        $('#menu li:eq('+index+') a').css('color','white');
-        $('.submenu:eq('+index+') li a').css('color','white');
-        $(this).css('color','#d195ff');
-      });
-      $('.submenu li a').mouseleave(function(){
-        $('.submenu:eq('+index+') li a').css('color','white');
-      });
-    });
-
-    $('.submenu').mouseleave(function(){
-      $('#menu li:eq('+index+') a').css('color','gray');
-      $('.submenu:eq('+index+') li a').css('color','gray');
-    }); 
-    // 메뉴바 마우스 이벤트 끝
-  });
-
-
-  //반응형 메뉴바 닫기
-  $(window).resize(function(){ 
-  if (window.innerWidth > 1250) {  // 다바이스 크기가 480이상일때 
-    $('.sub_menubar').css({left: '-350px'});
-    $('.index_nav').css({left: '0px'});
-    $('header').css({left: '0px'});
-    burger_toggle = 0;
-    $('body').css({overflow: 'visible'});
-    if(window_toggle == 0){
-      $(burger).toggleClass('active-' + (window_idx+1));
-      window_toggle = 1;
-    } else {
-      return false;
-    }
-  } else {
-     
-  }
-  }).resize(); 
-</script>
-</th:block>
+</header>
 </html>

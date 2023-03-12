@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Memorial
+Bundle-SymbolicName: Memorial
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: Memorial
+Export-Package: com.memorial,
+ com.memorial.controller,
+ com.memorial.dto,
+ com.memorial.entity,
+ com.memorial.repository,
+ com.memorial.security,
+ com.memorial.service,
+ templates

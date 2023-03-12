@@ -23,17 +23,10 @@
 </head>
 <body>
     <header>
-        <!-- <div data-includeHTML="stop_header.html"></div> -->
-        <th:block th:replace="stop_header :: stop_headerFragment"></th:block>
-        
+        <div th:replace="~{stop_header :: stop_headerFragment}"></div> 
     </header>
     <main>
         <section class="main_nav">
-            <!-- <div class="btns">
-                <button class="button" type="button"><h1>+</h2></button>
-                <h3>controller</h3>
-                <button class="button" type="button"><h1>-</h1></button>
-            </div> -->
             <div class="images">
                 <div class="images_tle">
                     <img id="sample_img" src="pgimg/a0.jpg">
@@ -56,35 +49,40 @@
 <script>
     //3.75초 마다 스톱모션 이미지 변경 처리
     let timer = undefined,
-        currnetIdx = 7;
-        show_img = $('#sample_img'),
-        ball_img = $('.marble').find('img');
+        currnetIdx = 7,
+        show_img = $('#sample_img');
 
     function stopMotion(){
         const colorThief = new ColorThief();
-        var colors = colorThief.getPalette($('#sample_img')[0],8);
-
-        $('body').css({
-            background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'), rgb('+ colors[3]+'), rgb('+ colors[4]+'), rgb('+ colors[5]+'), rgb('+ colors[6]+'), rgb('+ colors[7]+'))'
-        });
-        $('.button').css({
-            background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'))'
-        });
+       	const img = $('#sample_img')[0];
+        img.onload = function() {
+			const colors = colorThief.getPalette(img, 8);
+			
+			// 추출된 색상값을 이용한 코드 처리
+			$('body').css({
+	      		background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'), rgb('+ colors[3]+'), rgb('+ colors[4]+'), rgb('+ colors[5]+'), rgb('+ colors[6]+'), rgb('+ colors[7]+'))'
+		  	});
+		};
+        
         timer = setInterval(()=>{
             if(currnetIdx < 0){
                  currnetIdx = 7;
             }
+            
             show_img.attr({src: 'pgimg/a'+currnetIdx+'.jpg'});
             currnetIdx = currnetIdx -1;
-            colors = colorThief.getPalette($('#sample_img')[0],8);
+            
+            const img = $('#sample_img')[0];
 
-            //색상 추출 후 배경에 그라데이션 처리
-            $('body').css({
-                background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'), rgb('+ colors[3]+'), rgb('+ colors[4]+'), rgb('+ colors[5]+'), rgb('+ colors[6]+'), rgb('+ colors[7]+'))'
-            });
-            $('.button').css({
-                background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'))'
-            });
+			img.onload = function() {
+			  	const colors = colorThief.getPalette(img, 8);
+			  	
+			  	// 추출된 색상값을 이용한 코드 처리
+			  	$('body').css({
+	            background:'linear-gradient(rgb('+ colors[0]+'), rgb('+ colors[1]+'), rgb('+ colors[2]+'), rgb('+ colors[3]+'), rgb('+ colors[4]+'), rgb('+ colors[5]+'), rgb('+ colors[6]+'), rgb('+ colors[7]+'))'
+		        });
+			};
+	       
             timer = undefined;
         }, 3750);
     }
