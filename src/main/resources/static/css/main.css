@@ -18,6 +18,7 @@ main{
 main #main_nav {
     /* border: solid 1px red;  */
     height: 100%;
+    margin-bottom: 60px;
 }
 
 /* 메인 버튼들 */

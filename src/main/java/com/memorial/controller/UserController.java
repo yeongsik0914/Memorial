@@ -19,7 +19,7 @@ public class UserController {
 	
 	private final UserService userService;
 	
-	@GetMapping("/signup")
+	@GetMapping("/login")
 	public String signup(UserCreateForm userCreateForm) { 
 	
 		return "login";
