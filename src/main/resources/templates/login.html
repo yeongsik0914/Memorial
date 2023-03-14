@@ -32,16 +32,17 @@
                   <!-- Sign in form -->
                   <div id="sign-in-container" class="hide">
                     <h3 style="margin-bottom: 15px;">로그인</h3>
-                    <form th:action="@{/}" method="post">
+                    <form th:action="@{/login}" method="post">
 					  <div th:if="${param.error}">
 				          <div style="color: red;">
 				              사용자ID 또는 비밀번호를 확인해 주세요.
 				          </div>
 				      </div>	
 							
-						
-                      <label for="email">이메일</label>
-                      <input type="text" name="email" id="email" placeholder="user@example.com">
+					<!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> -->	
+							
+                      <label for="username">이름</label>
+                      <input type="text" name="username" id="username" placeholder="이름">
           
                       <label for="password">비밀번호</label>
                       <input type="password" name="password" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">

@@ -1,5 +1,7 @@
 package com.memorial.security;
 
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,16 +20,30 @@ public class Securityconfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
+			//모든 구간 접근 해제 
 			.authorizeHttpRequests().requestMatchers(
                 new AntPathRequestMatcher("/**")).permitAll()
+			
+		//h2 db 설정	
 		.and()
 			.csrf().ignoringRequestMatchers(
 					new AntPathRequestMatcher("/h2-console/**"))
 		.and()
             .headers()
             .addHeaderWriter(new XFrameOptionsHeaderWriter(
-                    XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN));     
-        return http.build();
+                    XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
+        .and()
+        	.formLogin()
+        	.loginPage("/login")
+			.defaultSuccessUrl("/")
+			.permitAll()
+		.and()
+			.logout()
+	        .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+	        .logoutSuccessUrl("/")
+	        .invalidateHttpSession(true);
+		
+		return http.build();
 	}
 	
 	@Bean
@@ -39,6 +55,5 @@ public class Securityconfig {
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-	
 	
 }

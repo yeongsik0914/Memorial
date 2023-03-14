@@ -27,3 +27,5 @@ changeForm(signUpForm, signInForm);
 signUpBtn.addEventListener('click', () => {
 changeForm(signUpForm, signInForm);
 });
+
+
