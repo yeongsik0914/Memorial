@@ -35,6 +35,7 @@ public class Securityconfig {
         .and()
         	.formLogin()
         	.loginPage("/login")
+        	.failureUrl("/")
 			.defaultSuccessUrl("/")
 			.permitAll()
 		.and()

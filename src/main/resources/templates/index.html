@@ -5,7 +5,8 @@
     <article class="sub_menubar">
         <div id="sub_header">
             <div class="sub_header_menu">
-                <a href="javascript:void(0);" onclick="login_Click();"><h3>로그인/회원가입</h3></a>
+                <a href="javascript:void(0);" sec:authorize="isAnonymous()" onclick="login_Click();"><h3>로그인/회원가입</h3></a>
+            	<a href="javascript:void(0);" sec:authorize="isAuthenticated()" th:href="@{/user/logout}"><h3>로그아웃</h3></a>
             </div>
         </div>
         <div id="sub_main">
